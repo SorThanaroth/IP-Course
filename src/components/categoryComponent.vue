@@ -1,9 +1,6 @@
 <template>
     <div class="buttonContainer">
-        <button type="button" 
-        :style="{backgroundColor: color}"
-        class="btn"
-        >
+        <button type="button" :style="{backgroundColor: color}" class="btn">
             <img :src="picture" alt="item picture" width="70px" height="70px" />
             <div class="text">
                 <span class="ItemName">{{ name }}</span>

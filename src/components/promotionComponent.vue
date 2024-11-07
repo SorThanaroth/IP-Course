@@ -1,16 +1,14 @@
 <template>
     <div class="container">
-        <button type="button" 
-        :style="{backgroundColor: color}"
-        class="btn"
-        >
+        <button type="button" :style="{backgroundColor: color}" class="btn">
             <div class="wrapper">
                 <span class="text">{{ text }}</span>
-                <Button @click="shopNow(promotion)"></Button>
+                <Button @click="shopNow(text)">Shop Now</Button>
             </div>
             <img :src="picture" alt="item picture" class="item-picture" />
         </button>
     </div>
+
 </template>
 
 <script>
@@ -28,8 +26,8 @@
         },
 
         methods:{
-            shopNow(promotion) {
-             alert("Let's shop: "+promotion.title);
+            shopNow(text) {
+             alert("Let's shop: "+text);
             }
         }
     };
