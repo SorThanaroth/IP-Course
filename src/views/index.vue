@@ -1,22 +1,23 @@
 <template>
     <div class="Wrapper">
-    <div class="Container" v-for="category in categoryComponent">
+    <div class="Container" v-for="categories in categoryComponent">
       <categoryComponent
         key="1"
-        :color="category.color"
-        :name="category.name"
-        :quantity="category.quantity"
-        :picture="category.picture"
+        :name="categories.name"
+        :productCount="categories.productCount"
+        :color="categories.color"
+        :image="categories.image"
       />
     </div>
   </div>
   <div class="wrapper2">
-    <div class="PromotionContainer" v-for="promotion in promotionComponent">
+    <div class="PromotionContainer" v-for="promotions in promotionComponent">
       <promotionComponent
-        :key="promotion"
-        :color="promotion.color"
-        :text="promotion.text"
-        :picture="promotion.picture"
+        :title="promotions.title"
+        :url="promotions.url"
+        :color="promotions.color"
+        :buttonColor="promotions.buttonColor"
+        :image="promotions.image"
       />
     </div>
   </div>
@@ -25,6 +26,7 @@
 import categoryComponent from "../components/categoryComponent.vue";
 import promotionComponent from "../components/promotionComponent.vue";
 import { RouterView } from "vue-router";
+import axios from "axios";
 
 export default {
   components: {
@@ -34,88 +36,37 @@ export default {
 
   data() {
     return {
-      categoryComponent: [
-        {
-          color: "#F2FCE4",
-          name: "Hamburger",
-          quantity: "14 items",
-          picture: new URL("@/assets/Image/burger.png", import.meta.url),
-        },
-        {
-          color: "#FFFCEB",
-          name: "Peach",
-          quantity: "17 items",
-          picture: new URL("@/assets/Image/peach.png", import.meta.url),
-        },
-        {
-          color: "#ECFFEC",
-          name: "Oganic Kiwi",
-          quantity: "21 items",
-          picture: new URL("@/assets/Image/kiwi.png", import.meta.url),
-        },
-        {
-          color: "#FEEFEA",
-          name: "Red Apple",
-          quantity: "68 items",
-          picture: new URL("@/assets/Image/apple.png", import.meta.url),
-        },
-        {
-          color: "#FFF3EB",
-          name: "Snack",
-          quantity: "34 items",
-          picture: new URL("@/assets/Image/snack.png", import.meta.url),
-        },
-        {
-          color: "#FFF3FF",
-          name: "Black plum",
-          quantity: "25 items",
-          picture: new URL("@/assets/Image/plum.png", import.meta.url),
-        },
-        {
-          color: "#F2FCE4",
-          name: "Vegetable",
-          quantity: "65 items",
-          picture: new URL("@/assets/Image/vegetable.png", import.meta.url),
-        },
-        {
-          color: "#FFFCEB",
-          name: "Headphone",
-          quantity: "33 items",
-          picture: new URL("@/assets/Image/headPhone.png", import.meta.url),
-        },
-
-        {
-          color: "#F2FCE4",
-          name: "Chocolate",
-          quantity: "54 items",
-          picture: new URL("@/assets/Image/snack2.png", import.meta.url),
-        },
-        {
-          color: "#FFF3FF",
-          name: "Orange",
-          quantity: "63 items",
-          picture: new URL("@/assets/Image/orange.png", import.meta.url),
-        },
-      ],
-
-      promotionComponent: [
-        {
-          color: "#F0E8D5",
-          text: "Everyday Fresh & Clean with Our Products",
-          picture: new URL("@/assets/Image/onion.png", import.meta.url),
-        },
-        {
-          color: "#F3E8E8",
-          text: "Make your Breakfast Healthy and Easy",
-          picture: new URL("@/assets/Image/milk.png", import.meta.url),
-        },
-        {
-          color: "#E7EAF3",
-          text: "The best Organic Product Online",
-          picture: new URL("@/assets/Image/vegetables.png", import.meta.url),
-        },
-      ],
+      categoryComponent: [],
+      promotionComponent: [],
     };
+  },
+  mounted() {
+    // fetch data categories, promotions from backend
+    this.fetchCategories()
+    this.fetchPromotions()
+  },
+  methods: {
+    fetchCategories(){
+      axios.get("http://localhost:3000/api/categories").then((result) => {
+        this.categoryComponent = result.data;
+        console.log(this.categories);
+      })
+      .catch((error) => {
+        console.error("Error fetching categories:", error); // Handle errors
+      });
+    },
+
+    fetchPromotions(){
+      axios.get("http://localhost:3000/api/promotions").then((result) => {
+        this.promotionComponent = result.data;
+        console.log(this.promotions);
+      })
+      .catch((error) => {
+        console.error("Error fetching promotions:", error); // Handle errors
+      });
+      
+    },
+
   },
 };
 </script>

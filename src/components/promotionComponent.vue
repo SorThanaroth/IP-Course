@@ -2,10 +2,10 @@
     <div class="container">
         <button type="button" :style="{backgroundColor: color}" class="btn">
             <div class="wrapper">
-                <span class="text">{{ text }}</span>
+                <span class="text">{{ title }}</span>
                 <Button @click="shopNow(text)">Shop Now</Button>
             </div>
-            <img :src="picture" alt="item picture" class="item-picture" />
+            <img :src="image" alt="item picture" class="item-picture" />
         </button>
     </div>
 
@@ -20,14 +20,15 @@
         },
 
         props: {
-        color: String,
-        text: String,
-        picture: String,
+            title: String,
+            url: String,
+            color: String,
+            image: Array,
         },
 
         methods:{
             shopNow(text) {
-             alert("Let's shop: "+text);
+             alert("Let's shop: "+title);
             }
         }
     };
