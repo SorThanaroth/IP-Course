@@ -47,8 +47,8 @@ export default {
   },
   methods: {
     fetchCategories(){
-      axios.get("http://localhost:3000/api/categories").then((result) => {
-        this.categoryComponent = result.data;
+      axios.get("http://localhost:3000/api/categories").then((response) => {
+        this.categoryComponent = response.data;
         console.log(this.categories);
       })
       .catch((error) => {
@@ -57,8 +57,8 @@ export default {
     },
 
     fetchPromotions(){
-      axios.get("http://localhost:3000/api/promotions").then((result) => {
-        this.promotionComponent = result.data;
+      axios.get("http://localhost:3000/api/promotions").then((response) => {
+        this.promotionComponent = response.data;
         console.log(this.promotions);
       })
       .catch((error) => {

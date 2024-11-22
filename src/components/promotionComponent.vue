@@ -27,8 +27,8 @@
         },
 
         methods:{
-            shopNow(text) {
-             alert("Let's shop: "+title);
+            shopNow(title) {
+             alert("Let's shop: "+ this.title);
             }
         }
     };
