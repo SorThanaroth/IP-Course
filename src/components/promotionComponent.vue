@@ -23,7 +23,7 @@
             title: String,
             url: String,
             color: String,
-            image: Array,
+            image: String,
         },
 
         methods:{
@@ -45,6 +45,10 @@
         border: solid 1px;
         border-radius: 10px;
         padding-left: 20px;
+    }
+
+    .btn:hover{
+        transform: scale(1.05);
     }
 
     .wrapper{

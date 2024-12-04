@@ -29,6 +29,7 @@ export const useProductStore = defineStore('product', {
       try {
         const response = await axios.get('http://localhost:3000/api/categories');
         this.categories = response.data;
+        console.log(this.categories);
       } catch (error) {
         console.error('Error fetching categories:', error);
       }
@@ -38,6 +39,7 @@ export const useProductStore = defineStore('product', {
       try {
         const response = await axios.get('http://localhost:3000/api/promotions');
         this.promotions = response.data;
+        console.log(this.promotions);
       } catch (error) {
         console.error('Error fetching promotions:', error);
       }
@@ -47,6 +49,7 @@ export const useProductStore = defineStore('product', {
         try {
           const response = await axios.get('http://localhost:3000/api/products');
           this.products = response.data;
+          console.log(this.products);
         } catch (error) {
           console.error('Error fetching products:', error);
         }
@@ -56,6 +59,7 @@ export const useProductStore = defineStore('product', {
         try {
           const response = await axios.get('http://localhost:3000/api/groups');
           this.groups = response.data;
+          console.log(this.groups);
         } catch (error) {
           console.error('Error fetching groups:', error);
         }

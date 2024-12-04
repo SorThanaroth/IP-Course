@@ -35,6 +35,9 @@
         border: solid 1px;
         border-radius: 10px;
     }
+    .btn:hover {
+        transform: scale(1.05);
+    }
 
     .text{
         display: flex;
