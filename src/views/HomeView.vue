@@ -170,7 +170,9 @@ export default {
   display: flex;
 }
 .wrapper4 {
-  display: flex;
+  /* display: flex; */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 2fr));
+  display: grid;
 }
 .ProductContainer {
   display: flex;

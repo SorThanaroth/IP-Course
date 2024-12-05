@@ -52,10 +52,13 @@ import menuComponent from './menuComponent.vue';
 
 <style scoped>
 .popularContainer {
-  padding: 20px;
+  position: relative;
+  padding: 15px;
   border-radius: 20px;
   background-color: white;
   align-items: center;
+  transition: box-shadow 0.3s;
+  display: grid;
 }
 .btn {
   margin: 20px;
