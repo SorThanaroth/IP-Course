@@ -27,17 +27,17 @@ class ProductController extends Controller
     public function createProduct(Request $request)
     {
         // $product = Product::create([
-        //     'name' => $request->input('name')
+        //     'name' => $request->input('name'),
         // ]);
         // $product = Product::create(['name' => 'Book']);
-        $product = DB::table('products')->insert(['name' => 'Book']);
 
+        // $product = DB::table('products')->insert(['name' => 'Book']);
 
-        
-        return response()->json([
-            "message" => "Product created successfully",
-            "data" => $products
-        ], 201);
+        // return response()->json([
+        //     "message" => "Product created successfully",
+        //     "data" => $product
+        // ], 201);
+        return ["message" => "Creating 1 new product"];
     }
 
     /**
