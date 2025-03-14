@@ -2,65 +2,45 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
-    /**
-     * Get /api/Products.
-     */
+    // GET /api/products
     public function getProducts()
     {
-        $products = Product::all();
-        return response()->json([
-            "message" => "Products retrieved successfully",
-            "data" => $products
-        ]);
-        // return ["message" => "Getting list of Product"];
+        $products = product::all();
+        return response()->json(['products' => $products]);
     }
 
-    /**
-     * Post /api/Products.
-     */
+    // POST /api/products
     public function createProduct(Request $request)
     {
-        // $product = Product::create([
-        //     'name' => $request->input('name'),
-        // ]);
-        // $product = Product::create(['name' => 'Book']);
-
-        // $product = DB::table('products')->insert(['name' => 'Book']);
-
-        // return response()->json([
-        //     "message" => "Product created successfully",
-        //     "data" => $product
-        // ], 201);
-        return ["message" => "Creating 1 new product"];
+        $product = Product::create($request->only('name', 'category_id', 'pricing', 'description', 'image'));
+        return response()->json($product, 201);
     }
 
-    /**
-     * Get /api/Products/{ProductId}.
-     */
+    // GET /api/products/{productId}
     public function getProduct($productId)
     {
-        return ["message" => "Getting 1 Product base on given ProductId"];
+        $product = Product::findOrFail($productId);
+        return response()->json($product);
     }
 
-    /**
-     * Patch /api/Products/{ProductId}.
-     */
-    public function updateProduct($productId)
+    // PATCH /api/products/{productId}
+    public function updateProduct(Request $request, $productId)
     {
-        return ["messsage" => "Updating 1 Product base on given ProductId"];
+        $product = Product::findOrFail($productId);
+        $product->update($request->only('name', 'category_id', 'pricing', 'description', 'image'));
+        return response()->json($product);
     }
 
-    /**
-     * Delete /api/Products/{ProductId}.
-     */
+    // DELETE /api/products/{productId}
     public function deleteProduct($productId)
     {
-        return ["message" => "Deleting 1 Product base on given ProductId"];
+        $product = Product::findOrFail($productId);
+        $product->delete();
+        return response()->json(['message' => "Product deleted successfully"], 204);
     }
 }

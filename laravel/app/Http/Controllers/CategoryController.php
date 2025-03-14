@@ -3,46 +3,45 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
-    /**
-     * Get /api/categories.
-     */
+    // GET /api/categories
     public function getCategories()
     {
-        return ["message" => "Getting list of categories"];
+        $categories = Category::all();
+        return response()->json(['categories' => $categories]);
     }
 
-    /**
-     * Post /api/categories.
-     */
-    public function createCategory()
+    // POST /api/categories
+    public function createCategory(Request $request)
     {
-        return ["message" => "Creating 1 new category"];
+        $category = Category::create($request->only('name'))->save();
+        return response()->json($category, 201);
     }
 
-    /**
-     * Get /api/categories/{categoryId}.
-     */
+    // GET /api/categories/{categoryId}
     public function getCategory($categoryId)
     {
-        return ["message" => "Getting 1 category base on given categoryId"];
+        $category = Category::findOrFail($categoryId);
+        return response()->json($category);
     }
 
-    /**
-     * Patch /api/categories/{categoryId}.
-     */
-    public function updateCategory($categoryId)
+    // PATCH /api/categories/{categoryId}
+    public function updateCategory(Request $request, $categoryId)
     {
-        return ["messsage" => "Updating 1 category base on given categoryId"];
+        $category = Category::findOrFail($categoryId);
+        $category->name = $request->name;
+        $category->save();
+        return $category;
     }
 
-    /**
-     * Delete /api/categories/{categoryId}.
-     */
+    // DELETE /api/categories/{categoryId}
     public function deleteCategory($categoryId)
     {
-        return ["message" => "Deleting 1 category base on given categoryId"];
+        $category = Category::findOrFail($categoryId);
+        $category->delete();
+        return response()->json(['message' => "Category deleted successfully"], 204);
     }
 }
