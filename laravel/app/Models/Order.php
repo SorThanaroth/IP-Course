@@ -23,7 +23,7 @@ class Order extends Model
             set: fn ($value) => Carbon::createFromFormat('d/m/Y H:i:s', $value)->format('Y-m-d H:i:s'),
             
             // Accessor: Convert database format to user format when retrieving
-            get: fn ($value) => Carbon::parse($value)->format('d-m-Y H:i:s')
+            get: fn ($value) => Carbon::parse($value)->format('d/m/Y H:i:s')
         );
     }
 
@@ -33,7 +33,7 @@ class Order extends Model
     public function payments() {
         return $this->hasMany(Payment::class);
     }
-    public function customers() {
-        return $this->belongsTO(Customer::class);
+    public function customer() {
+        return $this->belongsTo(Customer::class);
     }
 }

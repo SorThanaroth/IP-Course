@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Wishlist;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -9,13 +10,14 @@ class Wishlist extends Model
 {
     //
     use SoftDeletes;
+    protected $table = ['wishlists'];
     protected $fillable = ['product_id', 'customer_id'];
 
-    public function products() {
-        return $this->belongsTO(Product::class);
+    public function product() {
+        return $this->belongsTo(Product::class);
     }
-    public function customers() {
-        return $this->belongsTO(Customer::class);
+    public function customer() {
+        return $this->belongsTo(Customer::class);
     }
 
 }

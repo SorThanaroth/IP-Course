@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('wishlist', function (Blueprint $table) {
+        Schema::create('carts', function (Blueprint $table) {
             $table->id();
+            $table->integer('quantity')->unsigned()->default(1);
             $table->bigInteger('product_id')->unsigned();
             $table->bigInteger('cutomer_id')->unsigned();
-            $table->timestamps();
-
             $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('cutomer_id')->references('id')->on('customer');
+            $table->foreign('cutomer_id')->references('id')->on('customers');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('wishlist');
+        Schema::dropIfExists('carts');
     }
 };

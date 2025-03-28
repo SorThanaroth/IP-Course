@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Payment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -12,13 +13,14 @@ class Payment extends Model
 {
     //
     use SoftDeletes;
+    protected $table = 'payments';
     protected $fillable = ['payment_date', 'payment_method', 'amount', 'order_id', 'customer_id'];
 
-    public function orders() {
-        return $this->belongsTO(Order::class);
+    public function order() {
+        return $this->belongsTo(Order::class);
     }
-    public function customers() {
-        return $this->belongsTO(Customer::class);
+    public function customer() {
+        return $this->belongsTo(Customer::class);
     }
 
     protected function orderDate(): Attribute
