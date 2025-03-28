@@ -9,4 +9,18 @@ class Product extends Model
 {
     use HasFactory;
     protected $fillable = ['name', 'pricing', 'category_id', 'description', 'image'];
+
+    public function category() {
+        return $this->belongsTO(Category::class);
+    }
+    public function carts() {
+        return $this->hasMany(Cart::class);
+    }
+    public function wishlists() {
+        return $this->hasMany(Wishlist::class);
+    }
+    public function order_Products() {
+        return $this->hasMany(OrderProduct::class);
+    }
 }
+

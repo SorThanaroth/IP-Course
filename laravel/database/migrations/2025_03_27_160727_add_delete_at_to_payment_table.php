@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order', function (Blueprint $table) {
-            $table->id();
-            $table->timestamp('order_date')->nullable(false);
-            $table->decimal('total_price', 10, 2);
-
-            $table->foreign('customer_id')->references('id')->on('customer');
+        Schema::table('payment', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order');
+        Schema::table('payment', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };
