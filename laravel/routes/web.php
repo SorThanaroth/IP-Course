@@ -6,7 +6,7 @@ use App\Http\Controllers\UploadController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('upload_file');
 });
 
 Route::get('/dashboard', function () {
@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/upload_file', function () {
     return view('upload_file');
 });
-Route::post('/upload', [UploadController::class, 'upload'])->name('upload');
+Route::post('/upload', [UploadController::class, 'store'])->name('upload');
 
 Route::get('/test', [UploadController::class, 'test'])->name('test');
 
