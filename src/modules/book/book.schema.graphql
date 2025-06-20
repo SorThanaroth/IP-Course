@@ -6,8 +6,11 @@ type Book {
 
 type Query {
   books: [Book]
+  book(id: ID!): Book
 }
 
 type Mutation {
   addBook(title: String!, price: Int!): Book
+  updateBook(id: ID!, title: String, price: Int): Book
+  deleteBook(id: ID!): Boolean
 }
