@@ -5,7 +5,7 @@ import { GraphQLModule } from "@nestjs/graphql";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { BookResolver } from "./modules/book/book.resolver";
 import { BookModule } from "./modules/book/book.module";
-import { StudentModule } from "./modules/student/student..resolver";
+import { StudentModule } from "./modules/student/student.module";
 import { AttendanceModule } from "./modules/attendance/attendance.module";
 
 @Module({
